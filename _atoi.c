@@ -39,7 +39,7 @@ int _isalpha(int c)
  * @s: the string to be converted
  * Return: 0 if numbers in string, converted number othewise
  */
-int _atoi(cahr *s)
+int _atoi(char *s)
 {
 	int a, sign = 1, flag = 0, output;
 	unsigned int result = 0;
