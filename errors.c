@@ -1,9 +1,11 @@
 #include "shell.h"
+
 /**
  * _eputs - prints an input string
  * @str: the string to be printed
  * Return: 0
  */
+
 void _eputs(char *str)
 {
 	int i = 0;
@@ -16,12 +18,14 @@ void _eputs(char *str)
 		i++;
 	}
 }
+
 /**
  * _eputchar - writes the character c to stderr
  * *@c: the character to print
  * Return: on success 1.
  * on error, -1 is returned, and errorno is set appropriately
  */
+
 int _eputchar(char c)
 {
 
@@ -37,13 +41,15 @@ int _eputchar(char c)
 		buf[i++] = c;
 	return (1);
 }
+
 /**
  * _putfd - writes the character c to given fd
  * @fd: The character to pint
  * @fd: the filedescriptor to write to
  * Return: on success 1.
- * ON errror,,  -1 is returnd, and errono is set approprately
+ * ON error, -1 is returnd, and errono is set approprately
  */
+
 int _putfd(char c, int fd)
 {
 	static int i;
@@ -62,8 +68,9 @@ int _putfd(char c, int fd)
  * _putsfd - prints an input string
  * @str: the string to be printed
  * @fd: the number of char put
- * return: the nu ner of chars put
+ * return: the number of chars put
  */
+
 int _putsfd(char *str, int fd)
 {
 	int i = 0;
