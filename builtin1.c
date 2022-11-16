@@ -3,7 +3,7 @@
 /**
  * _myhistory - diplays the history list, one command by line, preceded
  * with line numbers, starting at 0
- * @info: struct containing potaintal arguments. used to maintain
+ * @info: struct containing potential arguments. used to maintain
  * constant function protogype
  * Return: 0
  */
@@ -14,7 +14,7 @@ int _myhistory(info_t *info)
 }
 /**
  * unset_alias - sets alias to string
- * @info: patameter struct
+ * @info: parameter struct
  * @str: the string alias
  * Return: 0 on success, 1 on error
  */
@@ -35,7 +35,7 @@ int unset_alias(info_t *info, char *str)
 }
 /**
  * set_alias - sets alias to string
- * @info: paramete struct
+ * @info: parameter struct
  * @str: the string alias
  * Return: the string alias
  * 0 = sucess, 1  =error
