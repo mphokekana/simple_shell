@@ -3,7 +3,7 @@
 /**
  * *_strncpy - copies a string
  * @dest: the destination string to be copied
- * @:; the amout of characters to be copied
+ * @n: the amout of characters to be copied
  * Return: the concatanate string
  */
 char *_strncpy(char *dest, char *src, int n)
@@ -59,7 +59,7 @@ char *_strncat(char *dest, char *arc, int n)
 /**
  * _strchr - locates a character in string
  * @s: te string to be parsed
- * @c the character to look for
+ * @c: the character to look for
  * Return: (s) a pointer to the memory area_s
  */
 char *_strchr(char *s, char c)

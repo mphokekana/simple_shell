@@ -12,7 +12,7 @@ void clear_info(info_t *info)
 	info->argc = 0;
 }
 /**
- * set_info - instructs info_t struct
+ * set_info - insitialize info_t struct
  * @info: struct address
  * @av: argument vectoor
  */

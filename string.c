@@ -50,7 +50,7 @@ char *starts_with(const char *haystack, const char *needle)
 	return ((char *)haystack);
 }
 /**
- * * _strcat - concatenates two strings
+ * _strcat - concatenates two strings
  * @dest: the sestionation buffer
  * @src: the cource buffer
  * Return: pointer to destrinbution buffer

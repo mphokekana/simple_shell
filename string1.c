@@ -28,7 +28,7 @@ char *_strcpy(char *dest, char *src)
 char *_strdup(const char *str)
 {
 	int length = 0;
-	char *rest;
+	char *ret;
 
 	if (str == NULL)
 		return (NULL);

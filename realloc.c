@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _memset - fills memory with a constant byte
+ **_memset - fills memory with a constant byte
  * @s: the pointer to the memory area
  * @b: the bytr to fill *s with
  * @n: the ammount of bytes to be filled
@@ -15,7 +15,8 @@ char *_memset(char *s, char b, unsigned int n)
 		s[i] = b;
 	return (s);
 }
-/** ffree - frees a string of strings
+/** 
+ * ffree - frees a string of strings
  * @pp: string of strings
  */
 void ffree(char **pp)

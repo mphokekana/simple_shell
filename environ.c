@@ -49,7 +49,7 @@ int _mysetenv(info_t *info)
 	return (1);
 }
 /**
- * _myunsetenv - Remove a envirinment variable
+ * _myunsetenv - Remove a environment variable
  * @info: struct contains potential arguments used to maintain
  * constant function prototype
  * Return: 0

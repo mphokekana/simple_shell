@@ -73,7 +73,7 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 	return (new_node);
 }
 /**
- * print_list_str -prints only the str element of a linked list
+ * print_list_str - prints only the str element of a linked list
  * @h: pointer to first node
  * Return: size odf list
  */

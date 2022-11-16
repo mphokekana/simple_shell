@@ -13,11 +13,7 @@ int main(int ac, char **av)
 
 	asm ("mov %1, %0\n\t"
 		"add $3, %0"
-<<<<<<< HEAD
 		: "=r" (fd)
-=======
-		: "ar" (fd);
->>>>>>> 491af8fd303d954dab9846e10c0961bc36119986
 		: "r" (fd));
 
 	if (ac == 2)

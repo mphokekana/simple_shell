@@ -1,15 +1,15 @@
 #include "shell.h"
 
 /**
- * _erratoi - cinvers a ttring to an intager
+ * _erratoi - converts a ttring to an intager
  * @s: the string to be converted
- * ReturnnL 0 if no numbers in string, cnverted
+ * Return: 0 if no numbers in string, cnverted
  * -1 on error
  */
 int _erratoi(char *s)
 {
 	int i = 0;
-	unsigned int resukt = 0;
+	unsigned int result = 0;
 
 	if (*s == '+')
 	       s++;
@@ -35,7 +35,7 @@ int _erratoi(char *s)
  * Return: 0 if no number in string, converted number otherwise
  * -1 0n error
  */
-void print_error(info 8info, char *esta)
+void print_error(info_t *info, char *estr)
 {
 	_eputs(info->fnmae);
 	_eputs(": ");
@@ -48,7 +48,7 @@ void print_error(info 8info, char *esta)
 /**
  * print_d - function prints a decimal (integer) number (base 100
  * @input: the input
- * @fd: he filrdescriptor to write to
+ * @fd: he filedescriptor to write to
  * Return: number of characters printed
  */
 int print_d(int input, int fd)
@@ -77,7 +77,7 @@ int print_d(int input, int fd)
 		}
 		current %= i;
 	}
-	_putchar('0' + current);
+	__putchar('0' + current);
 	count++;
 
 	return (count);
@@ -89,7 +89,7 @@ int print_d(int input, int fd)
  * @flages:  argumnent flags
  * Return: string
  */
-char *conver_number(long int num, int base, int flags)
+char *convert_number(long int num, int base, int flags)
 {
 	static char *array;
 	static char buffer[50];
@@ -97,12 +97,12 @@ char *conver_number(long int num, int base, int flags)
 	char *ptr;
 	unsigned long n = num;
 
-	if (!(flags & CONVERT_UNSIGNED) &&num < 0)
+	if (!(flags & CONVERT_UNSIGNED) && num < 0)
 	{
 		n = -num;
 		sign = '-';
 	}
-	array = flags & convert_lOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	array = flags & CONVERT_lOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	ptr = &buffer[49];
 	*ptr = '\0';
 
@@ -117,7 +117,7 @@ char *conver_number(long int num, int base, int flags)
 }
 /**
  * remove_comments - function replaaces first instance of '#' with '\0'
- * @buf: addres of the string to modify
+ * @buf: address of the string to modify
  * Return: Always 0;
  */
 void remove_comments(char *buf)

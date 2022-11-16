@@ -64,7 +64,7 @@ int _putfd(char c, int fd)
  * @fd: the number of char put
  * return: the nu ner of chars put
  */
-int _putsfc(char *str, int fd)
+int _putsfd(char *str, int fd)
 {
 	int i = 0;
 
