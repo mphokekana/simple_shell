@@ -2,7 +2,7 @@
 
 /**
  * _myexit - exit the shell
- * @info: struct cponntaind popential arguments, Used to mentain
+ * @info: struct potential arguments, Used to mentain
  * constant function prototype
  * Return: exit with a given exit stasus
  * 0 if info.argv[0] != "exit"
@@ -22,7 +22,7 @@ int _myexit(info_t *info)
 			_eputchar('\n');
 			return (1);
 		}
-		info->err_num = erratoi(info->argv[1]);
+		info->err_num = _erratoi(info->argv[1]);
 		return (-2);
 	}
 	info->err_num = -1;
@@ -41,7 +41,7 @@ int _mycd(info_t *info)
 
 	s = getcwd(buffer, 1024);
 	if (!s)
-		_puts("TODO: >>getcwd failur emsg here<<\n");
+		_puts("TODO: >>getcwd failure emsg here<<\n");
 	if (!info->argv[1])
 	{
 		dir = _getenv(info, "HOME=");
@@ -79,7 +79,7 @@ int _mycd(info_t *info)
 }
 /**
  * _myhelp - changes the current directory of the process
- * @info: structure com=ntaining potential arguments, used to maintain
+ * @info: struct containing potenitial arguments, used to maintain
  * constant function prototypes
  * Return: always 0
  */
@@ -88,7 +88,7 @@ int _myhelp(info_t *info)
 	char **arg_array;
 
 	arg_array = info->argv;
-	_puts("help call works. Function no yet implemented \n");
+	_puts("help call works. Function not yet implemented \n");
 	if (0)
 		_puts(*arg_array);
 	return (0);

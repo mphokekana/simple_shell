@@ -9,7 +9,7 @@
  */
 ssize_t input_buf(info_t *info, char **buf, size_t *len)
 {
-	ssize_t a = 0;
+	ssize_t r = 0;
 	size_t len_p = 0;
 
 	if (!*len)
@@ -19,27 +19,28 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 		signal(SIGINT, sigintHandler);
 	#if USE_GETLINE
 
-		a = getline(buf, &len_p, stdin);
+		r = getline(buf, &len_p, stdin);
 	#else
-		a = _getline(info, buf, &len_p);
-		if (a > 0)
+		r = _getline(info, buf, &len_p);
+
+		if (r > 0)
 		{
-			if ((*buf)[a - 1] == '\n')
+			if ((*buf)[r - 1] == '\n')
 			{
-				(*buf)[a - 1] = '\0';
-				a--;
+				(*buf)[r - 1] = '\0';
+				r--;
 			}
 			info->linecount_flag = 1;
 			remove_comments(*buf);
-			built_history_list(info, *buf, info->histcount++);
+			build_history_list(info, *buf, info->histcount++);
 			/* if (_srtchr(*buf, ';')) is this a comman */
 			{
-				*len = a;
+				*len = r;
 				info->cmd_buf = buf;
 			}
 		}
 	}
-	return (a);
+	return (r);
 }
 /**
  * get_input - gets a line minus the newline
@@ -48,39 +49,38 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
  */
 ssize_t get_input(info_t *info)
 {
-	static size_t *buf; /* the ';' command chain buffer */
-	static size_t c, d, len;
-	ssize_t a = 0;
+	static char *buf; /* the ';' command chain buffer */
+	static size_t i, j, len;
+	ssize_t r = 0;
 	char **buf_p = &(info->arg), *p;
 
 	_putchar(BUF_FLUSH);
-	a = input_buf(info, &buf, &len);
-	if (a == -1) /* EOF */
+	r = input_buf(info, &buf, &len);
+	if (r == -1) /* EOF */
 		return (-1);
 	if (len) /*we have commands left in the chain buffer */
 	{
-		d = c; /*init new iteroator to current buf position */
-		p = buf + c; /*get pointer for return */
+		j = i; /*init new iteroator to current buf position */
+		p = buf + i; /*get pointer for return */
 
-		check_chain(info, buf, &d, c,len);
-		while (d < len) /* iterate to semicolon or end */
+		check_chain(info, buf, &j, i, len);
+		while (j < len) /* iterate to semicolon or end */
 		{
-			if (is_chain(info, buf, &d))
+			if (is_chain(info, buf, &j))
 				break;
-			d++;
+			j++;
 		}
-		c = d + 1; /*inctement past nulled ';'' */
-		if (c >= len) /* reachind end of buffer? */
+		i = j + 1; /*inctement past nulled ';'' */
+		if (i >= len) /* reachind end of buffer? */
 		{
-			c = len = 0; /*restart position and length */
+			i = len = 0; /*restart position and length */
 			info->cmd_buf_type = CMD_NORM;
 		}
-
 		*buf_p = p; /*pas back pointer to current comman position */
 		return (_strlen(p)); /*return length of buffer from _getline() */
 	}
 	*buf_p = buf; /* else not a chain, pass back buffer from _getline() */
-	return (a); /* return length of buffer from _getline() */
+	return (r); /* return length of buffer from _getline() */
 }
 /**
  * read_buf - reads a buffer
@@ -89,7 +89,7 @@ ssize_t get_input(info_t *info)
  * @i: size
  * Return: r
  */
-ssize_t read _buf((info_t *info, char *buf, size_t *i)
+ssize_t read_buf(info_t *info, char *buf, size_t *i)
 {
 	ssize_t r = 0;
 
@@ -97,13 +97,12 @@ ssize_t read _buf((info_t *info, char *buf, size_t *i)
 		return (0);
 	r = read(info-> readfd , bgu, READ_BUF_SIZE);
 	if (r >= 0)
-		*i + r:
+		*i = r:
 	return (r);
 }
 /**
  * _getline - gets the next line of input frm STDIN
  * @info: parameter struct
- * @put: address of pointer to buffer, preallocated to NULL
  * @ptr: address of pointer to buffer, preallocated or NULL
  * @length: size of preallocateed ptr buffer if not NULL
  * Return: s
@@ -124,7 +123,10 @@ int _getline(info_t *info, char **ptr, size_t *length)
 
 	r = read_buf(info, buf, &len);
 	if (r == -1 || (r == 0 && len == 0))
-		return (-12);
+		return (-1);
+
+	c = _strchr(buf + i, '\n');
+        k = c ? 1 + (unsigned int)(c - buf) : len)	
 	if (s)
 		_strncat(new_p, buf + i, k - i);
 	else
@@ -141,9 +143,9 @@ int _getline(info_t *info, char **ptr, size_t *length)
 /**
  * signitHandler - blocks ctrl-c
  * @sig_num: the signal number
- * Rerurn: void
+ * Return: void
  */
-void signitHandler(__arr tibute__((unused))int sig_num)
+void signitHandler(__arrtibute__((unused))int sig_num)
 {
 	_puts("\n");
 	_puts("$ ");

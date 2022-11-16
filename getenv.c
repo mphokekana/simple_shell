@@ -1,8 +1,8 @@
 #include "shell.h"
 
-/*
- * get_environ - return the string array copy of our  environ
- * @info:  struct containing potantial argumnets, used to maintain 
+/**
+ * get_environ - returns the string array copy of our environ
+ * @info: struct containing potantial argumnets, used to maintain 
  * constant function prototype
  * Return: 0
  */
@@ -10,8 +10,8 @@ char **get_environ(info_t *info)
 {
 	if (!info->environ || info->env_changed)
 	{
-		info->environ = list_to_srtingd(info->env);
-		info-.env_changed = 0:
+		info->environ = list_to_strings(info->env);
+		info->env_changed = 0:
 	}
 	return (info->environ);
 }
@@ -22,7 +22,7 @@ char **get_environ(info_t *info)
  * Return: 1 on delete, 0 otherwise
  * @var: the string env var property
  */
-int _unsentenv(info_t *info, char *va5r)
+int _unsentenv(info_t *info, char *var)
 {
 	list_t *node = info->env;
 	size_t i = 0;
@@ -35,12 +35,13 @@ int _unsentenv(info_t *info, char *va5r)
 	{
 		p = starts_with(node->str, var);
 		if (p && *p == '=')
-			info->env_changed = delete_node_at _index(info->env), i);
+		{
+			info->env_changed = delete_node_at_index(&(info->env), i);
 			i = 0;
 			node = info->env;
 			continue;
 		}
-		node = nod->next;
+		node = node->next;
 		i++;
 	}
 	return (info->env_changed);
@@ -50,6 +51,8 @@ int _unsentenv(info_t *info, char *va5r)
  * modify an existing one
  * @info: struct containingporential arguments used to maintain
  * constant function prototype
+ * @var: the string env var property
+ * @value: the string env var value
  * Return: 0
  */
 int _setenv(info_t *info, char *var, char *value)
@@ -58,7 +61,7 @@ int _setenv(info_t *info, char *var, char *value)
 	list_t *node;
 	char *p;
 
-	if (!var || value)
+	if (!var || !value)
 		return (0);
 
 	buf = malloc(_strlen(var) + _strlen(value) + 2);
@@ -82,6 +85,6 @@ int _setenv(info_t *info, char *var, char *value)
 	}
 	add_node_end(&(info->env), buf, 0);
 	free(buf);
-	info->env_changed= 1;
+	info->env_changed = 1;
 	return (0);
 }

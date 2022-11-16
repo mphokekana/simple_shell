@@ -13,7 +13,7 @@ void clear_info(info_t *info)
 }
 /**
  * set_info - instructs info_t struct
- * @injfo: struct address
+ * @info: struct address
  * @av: argument vectoor
  */
 void set_info(info_t *info, char **av)
@@ -21,10 +21,10 @@ void set_info(info_t *info, char **av)
 	int i = 0;
 
 	info->fname = av[0];
-	if (!info->argv)
+	if (!info->arg)
 	{
-		info->argv = atrtow(info->arg, "\t");
-		if (info->argv)
+		info->argv = strtow(info->arg, " \t");
+		if (!info->argv)
 		{
 			info->argv = malloc(sizeof(char *) * 2);
 			if (!info->argv)
@@ -33,8 +33,8 @@ void set_info(info_t *info, char **av)
 				info->argv[1] = NULL;
 			}
 		}
-		for (i + 0; info->argv && info->argv[i]; i++)
-			:
+		for (i = 0; info->argv && info->argv[i]; i++)
+			;
 		info->argc = i;
 		
 		replace_alias(info);
@@ -42,7 +42,7 @@ void set_info(info_t *info, char **av)
 	}
 }
 /**
- * _free_info - frees info_t struct fields
+ * free_info - frees info_t struct fields
  * @into: struct address
  * @all: true if freeing all fields
  */
@@ -63,10 +63,9 @@ void free_info(info_t *info, int all)
 			free_list(&(info->alias));
 		ffree(info->environ);
 			info->environ = NULL;
-		bfree((void **)info->cma_buf);
+		bfree((void **)info->cmd_buf);
 		if (info->readfd > 2)
 			close(info->readfd);
 		_putchar(BUF_FLUSH);
 	}
 }
-

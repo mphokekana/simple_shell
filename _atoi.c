@@ -39,20 +39,21 @@ int _isalpha(int c)
  * @s: the string to be converted
  * Return: 0 if numbers in string, converted number othewise
  */
-int _atoi(cahr *s)
+int _atoi(char *s)
 {
-	int a, sign = 1, flag = 0, output;
+	int i, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	for (a = 0; s[a] != '\0' && flag != 2; a++)
+	for (i = 0; s[i] != '\0' && flag != 2; i++)
 	{
-		if (s[a] == '-')
+		if (s[i] == '-')
 			sign *= -1;
-		if (s[a] >= '0' && s[a] <= '9')
+
+		if (s[i] >= '0' && s[i] <= '9')
 		{
 			flag = 1;
 			result *= 10;
-			result += (s[a] - '0');
+			result += (s[i] - '0');
 		}
 		else if (flag == 1)
 			flag = 2;
@@ -61,5 +62,6 @@ int _atoi(cahr *s)
 		output = -result;
 	else
 		output = result;
+	
 	return (output);
 }

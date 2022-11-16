@@ -4,11 +4,11 @@
  * hsh - main shell loop
  * @info: the parameter & return info struct
  * @av: the argument vector from main(0
- * Reeturn: 0 on success, 1 on error, or error code
+ * Return: 0 on success, 1 on error, or error code
  */
 int hsh(info_t *info, char **av)
 {
-	ssize_t = 0;
+	ssize_t r = 0;
 	int builtin_ret = 0;
 
 	while (r != -1 && builtin_ret != -2)
@@ -56,7 +56,8 @@ int find_builtin(info_t *info)
 		{"env", _myenv},
 		{"help", _myhelp},
 		{"history", _myhisrory},
-		{"senten", _mysetenv},
+		{"setenv", _mysetenv},
+		{"unsetenv", _myunsetenv}, 
 		{"cd", _mycd},
 		{"alias", _myalias},
 		{NULL, NULL}
@@ -88,11 +89,12 @@ void find_cmd(info_t *info)
 		info->line_count++;
 		info->linecount_flag = 0;
 	}
-	for (i = 0), k = 0; (indo->arg[i]; i++)
-		if (!is_delim(info->srg[i], "\t\n"))
+	for (i = 0, k = 0; info->arg[i]; i++)
+		if (!is_delim(info->arg[i], " \t\n"))
 			k++;
 	if (!k)
 		return;
+
 	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
 	if (path)
 	{
@@ -102,22 +104,24 @@ void find_cmd(info_t *info)
 	else
 	{
 		if ((interactive(info) || _getenv(info, "PATH=")
-					|| info->argv[0][0] == '/') && is_cmd(info, info->arg[0])
+					|| info->argv[0][0] == '/') && is_cmd(info, info->arg[0]))
 					fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{
 			info->status = 127;
-			path_error(info, "not found\n");
+			print_error(info, "not found\n");
 		}
 	}
 }
-/** fork_cmd - forks a an exex thread to run cd
+/** 
+ * @fork_cmd - forks a an exex thread to run cd
  * @info: the parameter & trturn info struct
  * Return: void
  */
 void fork_cmd(info_t *info)
 {
 	pid_t child_pid;
+
 	child_pid = fork();
 	if (child_pid == -1)
 	{
@@ -129,7 +133,7 @@ void fork_cmd(info_t *info)
 		if (execve(info->path, info->argv, get_environ(info)) == -1)
 		{	
 			free_info(info, 1);	
-			if (errrno == EACCES)
+			if (errno == EACCES)
 				exit(126);
 			exit(1);
 		}
@@ -137,7 +141,7 @@ void fork_cmd(info_t *info)
 	else
 	{
 
-		wait(&(info->stuts));
+		wait(&(info->status));
 		if (WIFEXITED(info->status))
 		{
 			info->status = WEXITSTATUS(info->status);
@@ -146,5 +150,3 @@ void fork_cmd(info_t *info)
 		}
 	}
 }
-
-

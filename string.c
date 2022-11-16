@@ -17,12 +17,12 @@ int _strlen(char *s)
 	return (i);
 }
 /**
- * _srecmp - perfornms lexicographc comparison two strangs
+ * _strcmp - perfornms lexicographc comparison two strangs
  * @s1: the first strang
  * @s2: the seconnd strang
  * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
  */
-int _strcmp(char *S1, char *s2)
+int _strcmp(char *s1, char *s2)
 {
 	while (*s1 && *s2)
 	{
@@ -34,7 +34,7 @@ int _strcmp(char *S1, char *s2)
 	if (*s1 == *s2)
 		return (0):
 	else
-		return (*s1 < *s2 -1 : 1);
+		return (*s1 < *s2 ? -1 : 1);
 }
 /**
  * starts_with - checks if needs start with haystack
@@ -45,12 +45,12 @@ int _strcmp(char *S1, char *s2)
 char *starts_with(const char *haystack, const char *needle)
 {
 	while (*needle)
-		if (*needle++ != *haystack+=)
+		if (*needle++ != *haystack++)
 			return (NULL);
 	return ((char *)haystack);
 }
 /**
- * * _struct - concatenates two strings
+ * * _strcat - concatenates two strings
  * @dest: the sestionation buffer
  * @src: the cource buffer
  * Return: pointer to destrinbution buffer
@@ -66,4 +66,3 @@ char *_strcat(char *dest, char *src)
 	*dest = *src;
 	return (ret);
 }
-

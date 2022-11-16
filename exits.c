@@ -1,55 +1,57 @@
 #include "shell.h"
 
 /**
- * _gtrcpy - copies a string
+ * *_strncpy - copies a string
  * @dest: the destination string to be copied
- * @n; the amout of characters to be copied
- * Return; the concatanate string
+ * @:; the amout of characters to be copied
+ * Return: the concatanate string
  */
 char *_strncpy(char *dest, char *src, int n)
 {
-	int a, b;
+	int i, j;
 	char *s = dest;
 
-	a = 0;
-	while (src[a] != '\0' && a < n - 1)
+	i = 0;
+	while (src[i] != '\0' && i < n - 1)
 	{
-		dest[a] = src[a];
-		a++;
+		dest[i] = src[i];
+		i++;
 	}
-	if (a < n}
+	if (i < n}
 	{
-		b = a;
-		while (b < n)
+		j = i;
+		while (j < n)
 		{
-			dest[b] = '\0';
-			b++;
+			dest[j] = '\0';
+			j++;
 		}
 	}
 	return (s);
 }
 /**
+ * *_strncat - : concatenates two strings
+ * @dest: the first string
  * @src: the second string
  * @n: the amount of bytes to be maximally used
  * Return: the concatinated string
  */
 char *_strncat(char *dest, char *arc, int n)
 {
-	int a, b;
+	int i, j;
 	char *s = dest;
 
-	a = 0;
-	b = 0;
-        while (dest[a] != '\0')
-		a++;
-	while (src[b] '\0' && b < n)
+	i = 0;
+	j = 0;
+        while (dest[i] != '\0')
+		i++;
+	while (src[j] != '\0' && j < n)
 	{
-		dest[a] = src[b];
-		a++;
-		b++;
+		dest[i] = src[j];
+		i++;
+		j++;
 	}
-	if (b < n)
-		dest[a] = '\0';
+	if (j < n)
+		dest[i] = '\0';
 	return (s);
 }	
 
@@ -60,10 +62,10 @@ char *_strncat(char *dest, char *arc, int n)
  * @c the character to look for
  * Return: (s) a pointer to the memory area_s
  */
-char t_strchr(char *s, char c)
+char *_strchr(char *s, char c)
 {
 	do {
-		if(!s == c)
+		if(*s == c)
 			return (s);
 	} while (*s++ != '\0');
 
