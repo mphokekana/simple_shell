@@ -33,8 +33,8 @@ char *_getenv(info_t *info, const char *name)
 }
 /**
  * _mysetenv - Initialize a new environment variable,
- * or odify a existing one
- * @info: struct containing potential srguments used to maintain
+ * or modify an existing one
+ * @info: struct containing potential arguments used to maintain
  * Return: 0
  */
 int _mysetenv(info_t *info)
@@ -60,7 +60,7 @@ int _myunsetenv(info_t *info)
 
 	if (info->argc == 1)
 	{
-		_eputs("Too few arguments.\n");
+		_eputs("Too few arguments, \n");
 		return (1);
 	}
 	for (i = 1; i <= info->argc; i++)
