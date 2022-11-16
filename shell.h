@@ -49,19 +49,19 @@ typedef struct liststr
 } list_t;
 
 /**
- *struct passinfo - contains pseudo-argumrnts to pass inro a function
- *allwing unoform prototypes for function pointer struct
+ *struct passinfo - contains pseudo-argumrnts to pass into a function
+ *allwing uniform prototypes for function pointer struct
  *@arg: a string generated from getline containing arguments
  *@argv: an array of strings generated from argi
  *@argc: argument count
- *@path: a string path for the current comman
- *@line_count: the err counr
+ *@path: a string path for the current command
+ *@line_count: the err count
  *@err_num: the err code for exit()s
  *@linecount_flag: if on count this line of input
  *@fname: the program filename
  *@env: linked list locak copy of environ
- *@environ: custom modified copy of evviron from LL env
- *@history: the history nofe
+ *@environ: custom modified copy of eviron from LL env
+ *@history: the history node
  *@alias: the alias node
  *@env_changed: on if enviren was changed
  *@status: the return ststus of the last exec'd command
@@ -101,7 +101,7 @@ typedef struct passinfo
 		NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \ 0, 0, 0}
 /**
  * struct builtin - containds a builtin string and related function
- * @type: the bui;t command flag
+ * @type: the built command flag
  * @func: the function
  */
 typedef struct builtin
@@ -234,7 +234,6 @@ int replace_vars(info_t *);
 int replace_string(char **, char *);
 
 #endif
-
 
 
 
