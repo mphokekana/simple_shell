@@ -1,9 +1,10 @@
 #include "shell.h"
 
 /**
- * strcpy - copies a string
+ * _strcpy - copies a string
  * @dest: the destination
  * @src: the source
+ *
  * Return: pointer to destination
  */
 char *_strcpy(char *dest, char *src)
@@ -20,9 +21,11 @@ char *_strcpy(char *dest, char *src)
 	dest[i] = 0;
 	return (dest);
 }
+
 /**
  * _strdup - duplicates a string
  * @str: the string to duplicate
+ *
  * Return: pointer to the duplicated string
  */
 char *_strdup(const char *str)
@@ -40,12 +43,14 @@ char *_strdup(const char *str)
 	for (length++; length--;)
 		ret[length] = *--str;
 	return (ret);
-/**	
- * _puts - prints an input string
- * @str: the string to be printed
+}
+
+/**
+ *_puts - prints an input string
+ *@str: the string to be printed
+ *
  * Return: Nothing
  */
-
 void _puts(char *str)
 {
 	int i = 0;
@@ -58,11 +63,13 @@ void _puts(char *str)
 		i++;
 	}
 }
+
 /**
- * _putchar - writes the chapter c to stdout
- * @c: the charactre to pint
- * Return: on success 1
- * On error, -1 is returnd, and roorno is set  appropreiatly.
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
 int _putchar(char c)
 {
@@ -75,6 +82,6 @@ int _putchar(char c)
 		i = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[i++} = c;
+		buf[i++] = c;
 	return (1);
 }
